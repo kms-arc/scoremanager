@@ -25,7 +25,7 @@ public class LoginAction extends Action {
         }
 
         HttpSession session = req.getSession();
-        session.setAttribute("teacher", teacher);
+        session.setAttribute("user", teacher);
 
         req.getRequestDispatcher("/scoremanager/main/menu.jsp").forward(req, res);
     }

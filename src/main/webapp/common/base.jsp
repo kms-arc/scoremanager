@@ -45,7 +45,7 @@
             <a href="${pageContext.request.contextPath}/StudentList.action">学生一覧</a><br>
             <a href="${pageContext.request.contextPath}/ScoreAddMenu.action">成績登録</a><br>
             <a href="${pageContext.request.contextPath}/ScoreResult.action">成績参照</a><br>
-            <a href="${pageContext.request.contextPath}/SubjectMenu.action">科目管理</a>
+            <a href="${pageContext.request.contextPath}/SubjectList.action">科目管理</a>
         </div>
 
         <!-- メイン -->
