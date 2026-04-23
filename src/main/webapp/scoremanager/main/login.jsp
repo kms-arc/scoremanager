@@ -47,7 +47,8 @@
         <!-- ★ フォーム本体 -->
         <div style="padding:20px;">
 
-            <form action="Login.action" method="post">
+            <form action="${pageContext.request.contextPath}/Login.action" method="post">
+ 
 
                 <div style="margin-bottom:10px;">
                     <label>ID</label><br>
