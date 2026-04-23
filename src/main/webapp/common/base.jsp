@@ -30,8 +30,11 @@
         <div style="font-size:28px; font-weight:bold;">成績管理システム</div>
 
         <div style="position:absolute; right:8px; bottom:4px; font-size:12px;">
-            ${teacher.name} 様　
-            <a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a>
+         <c:if test="${not empty teacher}">
+    ${teacher.name} 様　
+    <a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a>
+</c:if>
+         
         </div>
     </div>
 
@@ -63,7 +66,7 @@
             </div>
 
             <!-- ★ 画面ごとの内容 -->
-            ${param.content}
+           <c:out value="${param.content}" escapeXml="false" />
 
         </div>
     </div>

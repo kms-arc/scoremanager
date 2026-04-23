@@ -13,6 +13,7 @@ public class LogoutAction extends Action {
         HttpSession session = req.getSession();
         session.invalidate();
 
-        req.getRequestDispatcher("/scoremanager/main/login.jsp").forward(req, res);
+        // ★ logout.jsp を表示する
+        req.getRequestDispatcher("/scoremanager/main/logout.jsp").forward(req, res);
     }
 }
