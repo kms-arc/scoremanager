@@ -15,10 +15,14 @@ public class SubjectMenuAction extends Action {
     public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         // セッションからログイン中の先生情報を取得
         HttpSession session = req.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("user");
+        
+        //  修正： "user" から "teacher" に変更
+        Teacher teacher = (Teacher) session.getAttribute("teacher");
 
-        // --- 修正ポイント：nullチェック ---
-        System.out.println("セッションの中身(user): " + session.getAttribute("user"));
+        // --- デバッグ用のログも修正 ---
+        System.out.println("セッションの中身(teacher): " + session.getAttribute("teacher"));
+        
+        // 先生情報が取れなかったらログイン画面へ
         if (teacher == null) {
             res.sendRedirect("Login.action");
             return;
@@ -26,7 +30,6 @@ public class SubjectMenuAction extends Action {
 
         // 先生が所属している学校の科目一覧を取得
         SubjectDao sDao = new SubjectDao();
-        // teacherがnullでないことが確定したので、安心して呼び出せる
         List<Subject> subjects = sDao.filter(teacher.getSchool());
 
         // リクエストに "subjects" という名前でリストを保存

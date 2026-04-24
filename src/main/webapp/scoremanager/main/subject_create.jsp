@@ -8,13 +8,21 @@
   </c:param>
   <c:param name="content">
     
+    <%-- ★追加：エラーメッセージの表示エリア --%>
+    <c:if test="${not empty error}">
+      <div style="color: red; margin-left: 20px; margin-bottom: 15px;">
+        ${error}
+      </div>
+    </c:if>
+    
     <form action="SubjectCreateExecute.action" method="post" style="margin-left: 20px;">
       
       <%-- ② 科目コード見出し --%>
       <div style="margin-bottom: 5px;">科目コード</div>
       <%-- ③ 入力フィールド --%>
       <div style="margin-bottom: 20px;">
-        <input type="text" name="cd" maxlength="3" placeholder="科目コードを入力してください" 
+        <%-- ★修正：value="${cd}" を追加（エラー時に値を保持） --%>
+        <input type="text" name="cd" value="${cd}" maxlength="3" placeholder="科目コードを入力してください" 
                style="width: 100%; max-width: 600px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
       </div>
       
@@ -22,7 +30,8 @@
       <div style="margin-bottom: 5px;">科目名</div>
       <%-- ⑤ 入力フィールド --%>
       <div style="margin-bottom: 20px;">
-        <input type="text" name="name" placeholder="科目名を記入してください" 
+        <%-- 修正：value="${name}" を追加（エラー時に値を保持） --%>
+        <input type="text" name="name" value="${name}" placeholder="科目名を記入してください" 
                style="width: 100%; max-width: 600px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
       </div>
       
