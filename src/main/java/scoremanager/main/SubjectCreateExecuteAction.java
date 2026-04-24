@@ -44,6 +44,6 @@ public class SubjectCreateExecuteAction extends Action {
         sDao.save(subject);
         
         // 保存が終わったら一覧画面へリダイレクト
-        res.sendRedirect("SubjectMenu.action");
+        req.getRequestDispatcher("/scoremanager/main/subject_create_done.jsp").forward(req, res);
     }
 }
