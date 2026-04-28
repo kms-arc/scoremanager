@@ -101,6 +101,7 @@ public class SubjectDao extends Dao {
                 subject = new Subject();
                 subject.setCd(rSet.getString("cd"));
                 subject.setName(rSet.getString("name"));
+                subject.setSchool(school);
             }
         } catch (Exception e) {
             throw e;
@@ -109,5 +110,26 @@ public class SubjectDao extends Dao {
             if (connection != null) connection.close();
         }
         return subject;
+    }
+
+    /**
+     * 削除: 科目情報をDBから削除する
+     */
+    public void delete(String cd, School school) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                "delete from subject where cd = ? and school_cd = ?"
+            );
+            statement.setString(1, cd);
+            statement.setString(2, school.getCd());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
     }
 }

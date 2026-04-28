@@ -93,6 +93,33 @@ public class TestDao extends Dao {
         }
     }
 
+    // 登録（成績登録）
+    public void insert(Test test) throws Exception {
+
+        Connection con = getConnection();
+        PreparedStatement st = null;
+
+        try {
+            st = con.prepareStatement(
+                "INSERT INTO TEST(STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) " +
+                "VALUES (?, ?, ?, ?, ?, ?)"
+            );
+
+            st.setString(1, test.getStudent().getNo());
+            st.setString(2, test.getSubject().getCd());
+            st.setString(3, test.getSchool().getCd());
+            st.setInt(4, test.getNo());
+            st.setObject(5, test.getPoint());
+            st.setString(6, test.getClassNum());
+
+            st.executeUpdate();
+
+        } finally {
+            if (st != null) st.close();
+            if (con != null) con.close();
+        }
+    }
+
     // 削除（成績削除）
     public void delete(String studentNo, String subjectCd, School school, int no) throws Exception {
 
