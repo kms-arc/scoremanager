@@ -36,7 +36,16 @@ public class TestDao extends Dao {
                 test = new Test();
 
                 test.setNo(rs.getInt("NO"));
-                test.setPoint(rs.getInt("POINT"));
+
+                // ★ POINTはNULLの可能性があるので注意
+                int p = rs.getInt("POINT");
+                if (rs.wasNull()) {
+                    test.setPoint(null);
+                } else {
+                    test.setPoint(p);
+                }
+
+                test.setClassNum(rs.getString("CLASS_NUM"));
                 test.setSchool(school);
 
                 Student student = new Student();
