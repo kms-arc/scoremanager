@@ -46,8 +46,8 @@
             <a href="${pageContext.request.contextPath}/scoremanager/main/menu.jsp">メニュー</a>
             <div style="font-weight:bold; margin-bottom:8px;">学生管理</div>
             <a href="${pageContext.request.contextPath}/StudentList.action">学生一覧</a><br>
-            <a href="${pageContext.request.contextPath}/ScoreAddMenu.action">成績登録</a><br>
-            <a href="${pageContext.request.contextPath}/ScoreResult.action">成績参照</a><br>
+            <a href="${pageContext.request.contextPath}/TestRegist.action">成績登録</a><br>
+            <a href="${pageContext.request.contextPath}/TestList.action">成績参照</a><br>
             <a href="${pageContext.request.contextPath}/SubjectList.action">科目管理</a>
         </div>
 

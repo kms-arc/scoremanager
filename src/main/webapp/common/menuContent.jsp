@@ -41,8 +41,8 @@
         ">
             成績管理
             <div style="margin-top:8px; font-size:14px; font-weight:normal;">
-                <a href="${pageContext.request.contextPath}/ScoreAddMenu.action">成績登録</a><br>
-                <a href="${pageContext.request.contextPath}/ScoreResult.action">成績参照</a>
+                <a href="${pageContext.request.contextPath}/TestRegist.action">成績登録</a><br>
+                <a href="${pageContext.request.contextPath}/TestList.action">成績参照</a>
             </div>
         </div>
 

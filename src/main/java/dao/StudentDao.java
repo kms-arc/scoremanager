@@ -124,7 +124,7 @@ public class StudentDao {
         return list;
     }
 
-    
+    // ★ 1件取得
     public Student find(String no, School school) {
 
         Student s = null;
@@ -163,7 +163,7 @@ public class StudentDao {
         return s;
     }
 
-    //編集
+    // ★ 編集
     public void update(Student s) {
 
         try {
@@ -192,7 +192,7 @@ public class StudentDao {
         }
     }
 
-//学生新規登録
+    // ★ 学生新規登録
     public void insert(Student s) {
 
         try {
@@ -219,6 +219,47 @@ public class StudentDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // ★ 入学年度＋クラスで学生一覧を取得（成績登録用）
+    public List<Student> filter(String entYear, String classNum, School school) {
+
+        List<Student> list = new ArrayList<>();
+
+        try {
+            Class.forName("org.h2.Driver");
+            Connection con = DriverManager.getConnection(URL, USER, PASS);
+
+            PreparedStatement st = con.prepareStatement(
+                "SELECT * FROM STUDENT WHERE SCHOOL_CD = ? AND ENT_YEAR = ? AND CLASS_NUM = ? ORDER BY NO"
+            );
+
+            st.setString(1, school.getCd());
+            st.setString(2, entYear);
+            st.setString(3, classNum);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                Student s = new Student();
+                s.setNo(rs.getString("NO"));
+                s.setName(rs.getString("NAME"));
+                s.setEntYear(rs.getInt("ENT_YEAR"));
+                s.setClassNum(rs.getString("CLASS_NUM"));
+                s.setAttend(rs.getBoolean("IS_ATTEND"));
+                s.setSchool(school);
+                list.add(s);
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     // ★ 絞り込み検索（追加）

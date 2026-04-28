@@ -21,6 +21,9 @@ public class Student implements Serializable {
     /** 学校 */
     private School school;
 
+    /** 成績登録用の点数（null あり） */
+    private Integer point;
+
     public String getNo() {
         return no;
     }
@@ -67,5 +70,13 @@ public class Student implements Serializable {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
     }
 }
