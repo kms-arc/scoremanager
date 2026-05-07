@@ -101,6 +101,10 @@ public class SubjectDao extends Dao {
                 subject = new Subject();
                 subject.setCd(rSet.getString("cd"));
                 subject.setName(rSet.getString("name"));
+                
+                School s = new School();
+                s.setCd(rSet.getString("school_cd"));
+                subject.setSchool(s);
             }
         } catch (Exception e) {
             throw e;
@@ -109,5 +113,68 @@ public class SubjectDao extends Dao {
             if (connection != null) connection.close();
         }
         return subject;
+    }
+    
+    /**
+     * 更新
+     *
+     * 
+     */
+    public int update(Subject subject) throws Exception {
+    	Connection connection = getConnection();
+        PreparedStatement statement = null;
+        
+        try {
+        	//SQLの作成と実行
+        	statement = connection.prepareStatement(
+        		"update subject set name=? where cd = ? and school_cd = ?"
+        			);
+        	
+        	//取得した値をセット
+        	statement.setString(1, subject.getName());
+            statement.setString(2, subject.getCd());
+            statement.setString(3, subject.getSchool().getCd());
+            
+            
+            int count = statement.executeUpdate();
+            return count;
+            
+        } catch (Exception e) {
+        	throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+    }
+    
+    
+    /**
+     * 削除
+     */
+    public boolean delete(Subject subject) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        int line = 0;
+        
+        try {
+        	//SQLの作成
+            statement = connection.prepareStatement(
+                "delete from subject where cd = ? and school_cd = ?"
+            );
+            
+            //取得した値をセット
+            statement.setString(1, subject.getCd());
+            statement.setString(2, subject.getSchool().getCd()); // ←これ追加
+            
+            line = statement.executeUpdate();
+            
+        } catch (Exception e) {
+            throw e;
+        }finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        
+        return line>0;
     }
 }

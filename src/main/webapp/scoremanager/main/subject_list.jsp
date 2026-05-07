@@ -31,10 +31,10 @@
                 <td style="padding: 10px;">${subject.cd}</td>
                 <td style="padding: 10px;">${subject.name}</td>
                 <td style="padding: 10px; text-align: center;">
-                  <a href="SubjectUpdate.action?cd=${subject.cd}" style="color: #007bff; text-decoration: none;">変更</a>
+                  <a href="SubjectUpdate.action?cd=${subject.cd}&school_cd=${subject.school.cd}" style="color: #007bff; text-decoration: none;">変更</a>
                 </td>
                 <td style="padding: 10px; text-align: center;">
-                  <a href="SubjectDelete.action?cd=${subject.cd}" style="color: #007bff; text-decoration: none;">削除</a>
+                  <a href="SubjectDelete.action?cd=${subject.cd}&school_cd=${subject.school.cd}" style="color: #007bff; text-decoration: none;">削除</a>
                 </td>
               </tr>
             </c:forEach>
