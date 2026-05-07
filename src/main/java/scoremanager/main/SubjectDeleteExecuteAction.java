@@ -34,4 +34,3 @@ public class SubjectDeleteExecuteAction extends Action {
            .forward(req, res);
     }
 }    
-
