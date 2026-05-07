@@ -36,7 +36,16 @@ public class TestDao extends Dao {
                 test = new Test();
 
                 test.setNo(rs.getInt("NO"));
-                test.setPoint(rs.getInt("POINT"));
+
+                // ★ POINTはNULLの可能性があるので注意
+                int p = rs.getInt("POINT");
+                if (rs.wasNull()) {
+                    test.setPoint(null);
+                } else {
+                    test.setPoint(p);
+                }
+
+                test.setClassNum(rs.getString("CLASS_NUM"));
                 test.setSchool(school);
 
                 Student student = new Student();
@@ -75,6 +84,33 @@ public class TestDao extends Dao {
             st.setString(3, subjectCd);
             st.setString(4, school.getCd());
             st.setInt(5, no);
+
+            st.executeUpdate();
+
+        } finally {
+            if (st != null) st.close();
+            if (con != null) con.close();
+        }
+    }
+
+    // 登録（成績登録）
+    public void insert(Test test) throws Exception {
+
+        Connection con = getConnection();
+        PreparedStatement st = null;
+
+        try {
+            st = con.prepareStatement(
+                "INSERT INTO TEST(STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) " +
+                "VALUES (?, ?, ?, ?, ?, ?)"
+            );
+
+            st.setString(1, test.getStudent().getNo());
+            st.setString(2, test.getSubject().getCd());
+            st.setString(3, test.getSchool().getCd());
+            st.setInt(4, test.getNo());
+            st.setObject(5, test.getPoint());
+            st.setString(6, test.getClassNum());
 
             st.executeUpdate();
 

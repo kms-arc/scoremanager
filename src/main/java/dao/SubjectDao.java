@@ -101,10 +101,14 @@ public class SubjectDao extends Dao {
                 subject = new Subject();
                 subject.setCd(rSet.getString("cd"));
                 subject.setName(rSet.getString("name"));
+<<<<<<< HEAD
                 
                 School s = new School();
                 s.setCd(rSet.getString("school_cd"));
                 subject.setSchool(s);
+=======
+                subject.setSchool(school);
+>>>>>>> branch 'master' of https://github.com/kms-arc/scoremanager.git
             }
         } catch (Exception e) {
             throw e;
@@ -114,6 +118,7 @@ public class SubjectDao extends Dao {
         }
         return subject;
     }
+<<<<<<< HEAD
     
     /**
      * 更新
@@ -176,5 +181,27 @@ public class SubjectDao extends Dao {
         }
         
         return line>0;
+=======
+
+    /**
+     * 削除: 科目情報をDBから削除する
+     */
+    public void delete(String cd, School school) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                "delete from subject where cd = ? and school_cd = ?"
+            );
+            statement.setString(1, cd);
+            statement.setString(2, school.getCd());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+>>>>>>> branch 'master' of https://github.com/kms-arc/scoremanager.git
     }
 }
