@@ -33,4 +33,4 @@ public class SubjectDeleteExecuteAction extends Action {
         req.getRequestDispatcher("/scoremanager/main/subject_delete_done.jsp")
            .forward(req, res);
     }
-}
+}    
