@@ -33,5 +33,3 @@ public class SubjectUpdateAction extends Action {
            .forward(req, res);
     }
 }
-
-  
