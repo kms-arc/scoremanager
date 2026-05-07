@@ -166,4 +166,3 @@ public class SubjectDao extends Dao {
         return line > 0;
     }
 }
-
