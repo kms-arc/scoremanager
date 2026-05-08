@@ -1,15 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<html>
-<head>
-	<title>成績削除完了</title>
-</head>
-<body>
+<c:import url="/common/base.jsp">
+  <c:param name="title">成績削除完了</c:param>
+  <c:param name="menuTitle">成績削除完了</c:param>
+  <c:param name="content">
 
-<h2>成績削除完了</h2>
-<p>成績を削除しました。</p>
+    <h2>成績削除完了</h2>
 
-<p><a href="Menu.action">メニューへ戻る</a></p>
+    <p>成績を削除しました。</p>
 
-</body>
-</html>
+    <p>
+      <a href="Menu.action">メニューへ戻る</a>
+    </p>
+
+  </c:param>
+</c:import>
