@@ -9,7 +9,8 @@
     <h2>成績参照検索</h2>
 
     <%-- 科目情報検索フォーム --%>
-    <form action="TestListSubjectExecute.action" method="post">
+    <form action="TestList.action" method="post">
+      <input type="hidden" name="f" value="sj">
 
       <p>科目情報</p>
 
@@ -51,7 +52,8 @@
     </form>
 
     <%-- 学生情報検索フォーム --%>
-    <form action="TestListStudentExecute.action" method="post">
+    <form action="TestList.action" method="post">
+      <input type="hidden" name="f" value="st">
 
       <p>学生情報</p>
 
