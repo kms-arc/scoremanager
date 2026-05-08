@@ -1,37 +1,67 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<html>
-<head>
-	<title>成績変更</title>
-</head>
-<body>
+<c:import url="/common/base.jsp">
+  <c:param name="title">成績変更</c:param>
+  <c:param name="menuTitle">成績変更</c:param>
+  <c:param name="content">
 
-<h2>成績変更</h2>
+    <h2>成績変更</h2>
 
-<c:if test="${not empty error}">
-	<p style="color:red;">${error}</p>
-</c:if>
+    <c:if test="${not empty error}">
+      <div style="color:red; margin-bottom:10px;">${error}</div>
+    </c:if>
 
-<form action="TestUpdateExecute.action" method="post">
+    <c:if test="${not empty test}">
+      <form action="TestUpdateExecute.action" method="post">
 
-	<input type="hidden" name="student_no" value="${test.student.no}">
-	<input type="hidden" name="subject_cd" value="${test.subject.cd}">
-	<input type="hidden" name="no" value="${test.no}">
+        <input type="hidden" name="student_no" value="${test.student.no}">
+        <input type="hidden" name="subject_cd" value="${test.subject.cd}">
+        <input type="hidden" name="no" value="${test.no}">
 
-	<p>学生番号：${test.student.no}</p>
-	<p>科目コード：${test.subject.cd}</p>
-	<p>回数：${test.no}</p>
+        <table style="border-collapse:collapse; width:500px;">
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">学生番号</th>
+            <td style="padding:8px;">${test.student.no}</td>
+          </tr>
 
-	<p>
-		点数：
-		<input type="text" name="point" value="${test.point}">
-	</p>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">科目コード</th>
+            <td style="padding:8px;">${test.subject.cd}</td>
+          </tr>
 
-	<input type="submit" value="更新">
-</form>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">回数</th>
+            <td style="padding:8px;">${test.no}</td>
+          </tr>
 
-<p><a href="Menu.action">メニューへ戻る</a></p>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">点数</th>
+            <td style="padding:8px;">
+              <input type="text" name="point" value="${test.point}" style="width:80px;">
+            </td>
+          </tr>
+        </table>
 
-</body>
-</html>
+        <div style="margin-top:15px;">
+          <button type="submit" style="
+            width:90px;
+            height:26px;
+            font-size:12px;
+            background-color:#666;
+            color:#fff;
+            border:1px solid #444;
+            border-radius:3px;
+            cursor:pointer;
+          ">更新</button>
+        </div>
+
+      </form>
+    </c:if>
+
+    <p style="margin-top:15px;">
+      <a href="Menu.action">メニューへ戻る</a>
+    </p>
+
+  </c:param>
+</c:import>

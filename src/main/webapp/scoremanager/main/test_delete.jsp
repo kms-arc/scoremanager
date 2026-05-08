@@ -1,30 +1,63 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<html>
-<head>
-	<title>成績削除</title>
-</head>
-<body>
+<c:import url="/common/base.jsp">
+  <c:param name="title">成績削除</c:param>
+  <c:param name="menuTitle">成績削除</c:param>
+  <c:param name="content">
 
-<h2>成績削除</h2>
+    <h2>成績削除</h2>
 
-<p>以下の成績を削除しますか？</p>
+    <c:if test="${not empty test}">
+      <p>以下の成績を削除しますか？</p>
 
-<form action="TestDeleteExecute.action" method="post">
+      <form action="TestDeleteExecute.action" method="post">
 
-	<input type="hidden" name="student_no" value="${test.student.no}">
-	<input type="hidden" name="subject_cd" value="${test.subject.cd}">
-	<input type="hidden" name="no" value="${test.no}">
+        <input type="hidden" name="student_no" value="${test.student.no}">
+        <input type="hidden" name="subject_cd" value="${test.subject.cd}">
+        <input type="hidden" name="no" value="${test.no}">
 
-	<p>学生番号：${test.student.no}</p>
-	<p>科目コード：${test.subject.cd}</p>
-	<p>回数：${test.no}</p>
-	<p>点数：${test.point}</p>
+        <table style="border-collapse:collapse; width:500px;">
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">学生番号</th>
+            <td style="padding:8px;">${test.student.no}</td>
+          </tr>
 
-	<input type="submit" value="削除">
-</form>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">科目コード</th>
+            <td style="padding:8px;">${test.subject.cd}</td>
+          </tr>
 
-<p><a href="Menu.action">キャンセル</a></p>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">回数</th>
+            <td style="padding:8px;">${test.no}</td>
+          </tr>
 
-</body>
-</html>
+          <tr style="border-bottom:1px solid #ccc;">
+            <th style="text-align:left; padding:8px;">点数</th>
+            <td style="padding:8px;">${test.point}</td>
+          </tr>
+        </table>
+
+        <div style="margin-top:15px;">
+          <button type="submit" style="
+            width:90px;
+            height:26px;
+            font-size:12px;
+            background-color:#666;
+            color:#fff;
+            border:1px solid #444;
+            border-radius:3px;
+            cursor:pointer;
+          ">削除</button>
+        </div>
+
+      </form>
+    </c:if>
+
+    <p style="margin-top:15px;">
+      <a href="Menu.action">キャンセル</a>
+    </p>
+
+  </c:param>
+</c:import>

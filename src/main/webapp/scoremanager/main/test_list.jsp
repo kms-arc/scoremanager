@@ -92,16 +92,23 @@
                 <th style="padding:8px;">氏名</th>
                 <th style="padding:8px;">１回の点数</th>
                 <th style="padding:8px;">２回の点数</th>
+                <th style="padding:8px;">操作</th>
               </tr>
             </thead>
             <tbody>
               <c:forEach var="t" items="${testListSubjects}">
                 <c:set var="p1" value="-"/>
                 <c:set var="p2" value="-"/>
+
                 <c:forEach var="entry" items="${t.points}">
-                  <c:if test="${entry.key == 1}"><c:set var="p1" value="${entry.value}"/></c:if>
-                  <c:if test="${entry.key == 2}"><c:set var="p2" value="${entry.value}"/></c:if>
+                  <c:if test="${entry.key == 1}">
+                    <c:set var="p1" value="${entry.value}"/>
+                  </c:if>
+                  <c:if test="${entry.key == 2}">
+                    <c:set var="p2" value="${entry.value}"/>
+                  </c:if>
                 </c:forEach>
+
                 <tr style="border-bottom:1px solid #eee;">
                   <td style="padding:8px;">${t.entYear}</td>
                   <td style="padding:8px;">${t.classNum}</td>
@@ -109,6 +116,17 @@
                   <td style="padding:8px;">${t.studentName}</td>
                   <td style="padding:8px;">${p1}</td>
                   <td style="padding:8px;">${p2}</td>
+
+                  <td style="padding:8px;">
+                    <a href="TestUpdate.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=1">変更(1回)</a>
+                    &nbsp;
+                    <a href="TestUpdate.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=2">変更(2回)</a>
+                    <br>
+                    <a href="TestDelete.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=1">削除(1回)</a>
+                    &nbsp;
+                    <a href="TestDelete.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=2">削除(2回)</a>
+                  </td>
+
                 </tr>
               </c:forEach>
             </tbody>
@@ -131,6 +149,7 @@
                 <th style="padding:8px;">科目名</th>
                 <th style="padding:8px;">回数</th>
                 <th style="padding:8px;">得点</th>
+                <th style="padding:8px;">操作</th>
               </tr>
             </thead>
             <tbody>
@@ -140,6 +159,13 @@
                   <td style="padding:8px;">${t.subjectName}</td>
                   <td style="padding:8px;">${t.num}</td>
                   <td style="padding:8px;">${t.point}</td>
+
+                  <td style="padding:8px;">
+                    <a href="TestUpdate.action?student_no=${param.f4}&subject_cd=${t.subjectCd}&no=${t.num}">変更</a>
+                    &nbsp;
+                    <a href="TestDelete.action?student_no=${param.f4}&subject_cd=${t.subjectCd}&no=${t.num}">削除</a>
+                  </td>
+
                 </tr>
               </c:forEach>
             </tbody>
