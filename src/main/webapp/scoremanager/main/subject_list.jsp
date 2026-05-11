@@ -3,9 +3,7 @@
 
 <c:import url="/common/base.jsp">
   <c:param name="title">得点管理システム</c:param>
-  <c:param name="menuTitle">
-    <div style="background-color: #eee; padding: 10px; margin-bottom: 20px; font-weight: bold; border-radius: 4px;">科目管理</div>
-  </c:param>
+  <c:param name="menuTitle">科目管理</c:param>
   <c:param name="content">
 
     <div style="text-align:right; margin-bottom:10px;">
