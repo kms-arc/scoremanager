@@ -3,9 +3,7 @@
 
 <c:import url="/common/base.jsp">
   <c:param name="title">得点管理システム</c:param>
-  <c:param name="menuTitle">
-    <div style="background-color: #eee; padding: 10px; margin-bottom: 20px;">科目情報登録</div>
-  </c:param>
+  <c:param name="menuTitle">科目情報登録</c:param>
   <c:param name="content">
     
     <%-- ★追加：エラーメッセージの表示エリア --%>
