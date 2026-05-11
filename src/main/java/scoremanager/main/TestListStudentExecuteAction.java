@@ -21,7 +21,7 @@ public class TestListStudentExecuteAction extends Action {
     public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
         HttpSession session = req.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("user");
+        Teacher teacher = (Teacher) session.getAttribute("teacher");
         if (teacher == null) {
             res.sendRedirect("login.jsp");
             return;
