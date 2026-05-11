@@ -20,7 +20,7 @@ public class TestListAction extends Action {
 
         // セッションからユーザーデータを取得（事前条件：ログイン状態であること）
         HttpSession session = req.getSession();
-        Teacher teacher = (Teacher) session.getAttribute("user");
+        Teacher teacher = (Teacher) session.getAttribute("teacher");
         if (teacher == null) {
             res.sendRedirect("login.jsp");
             return;
