@@ -28,7 +28,13 @@ public class FrontController extends HttpServlet {
             action.execute(req, res);
 
         } catch (Exception e) {
-            throw new ServletException(e);
+
+            // その他のエラー
+            req.setAttribute("errorMessage", "システムエラーが発生しました");
+
+            req.getRequestDispatcher("/common/error.jsp")
+               .forward(req, res);
+            return;
         }
     }
 
