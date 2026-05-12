@@ -187,14 +187,11 @@
                   <td style="padding:8px;">${p1}</td>
                   <td style="padding:8px;">${p2}</td>
 
+                  <!-- ★操作は変更・削除の2つだけ -->
                   <td style="padding:8px; font-size:12px;">
-                    <a href="TestUpdate.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=1">変更(1回)</a>
+                    <a href="TestUpdate.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=1">変更</a>
                     &nbsp;
-                    <a href="TestUpdate.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=2">変更(2回)</a>
-                    <br>
-                    <a href="TestDelete.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=1">削除(1回)</a>
-                    &nbsp;
-                    <a href="TestDelete.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=2">削除(2回)</a>
+                    <a href="TestDelete.action?student_no=${t.studentNo}&subject_cd=${param.f3}">削除</a>
                   </td>
 
                 </tr>

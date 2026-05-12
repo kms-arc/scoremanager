@@ -17,7 +17,6 @@
 
         <input type="hidden" name="student_no" value="${test.student.no}">
         <input type="hidden" name="subject_cd" value="${test.subject.cd}">
-        <input type="hidden" name="no" value="${test.no}">
 
         <table style="border-collapse:collapse; width:500px;">
           <tr style="border-bottom:1px solid #ccc;">
@@ -32,7 +31,12 @@
 
           <tr style="border-bottom:1px solid #ccc;">
             <th style="text-align:left; padding:8px;">回数</th>
-            <td style="padding:8px;">${test.no}</td>
+            <td style="padding:8px;">
+              <select name="no" style="width:80px; height:26px; font-size:12px;">
+                <option value="1" <c:if test="${test.no == 1}">selected</c:if>>1</option>
+                <option value="2" <c:if test="${test.no == 2}">selected</c:if>>2</option>
+              </select>
+            </td>
           </tr>
 
           <tr style="border-bottom:1px solid #ccc;">
