@@ -185,7 +185,6 @@
                   <td style="padding:8px;">${p1}</td>
                   <td style="padding:8px;">${p2}</td>
 
-                  <!-- ★操作は変更・削除の2つだけ -->
                   <td style="padding:8px; font-size:12px;">
                     <a href="TestUpdate.action?student_no=${t.studentNo}&subject_cd=${param.f3}&no=1">変更</a>
                     &nbsp;
