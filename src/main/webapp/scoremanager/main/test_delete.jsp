@@ -6,8 +6,6 @@
   <c:param name="menuTitle">成績削除</c:param>
   <c:param name="content">
 
-    <h2>成績削除</h2>
-
     <!-- 両方存在する場合（回数選択） -->
     <c:if test="${not empty test1 and not empty test2}">
       <p>削除する回数を選択してください。</p>

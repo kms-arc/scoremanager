@@ -6,8 +6,6 @@
   <c:param name="menuTitle">成績変更完了</c:param>
   <c:param name="content">
 
-    <h2>成績変更完了</h2>
-
     <p>成績を更新しました。</p>
 
     <p>

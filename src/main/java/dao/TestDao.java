@@ -68,7 +68,7 @@ public class TestDao extends Dao {
         return test;
     }
 
-    // 点数更新（成績変更）
+    // 点数更新（UPDATEのみ）
     public void updatePoint(String studentNo, String subjectCd, School school, int no, int point) throws Exception {
 
         Connection con = getConnection();
@@ -93,7 +93,7 @@ public class TestDao extends Dao {
         }
     }
 
-    // ★ UPDATEできなければINSERT（回数変更対応）
+    // ★ UPDATEできなければINSERT（成績変更で使う）
     public void upsertPoint(String studentNo, String subjectCd, School school, int no, int point, String classNum) throws Exception {
 
         Connection con = getConnection();
@@ -114,7 +114,7 @@ public class TestDao extends Dao {
             int count = st.executeUpdate();
             st.close();
 
-            // 更新できなかった場合はINSERT
+            // UPDATEできなかったらINSERT
             if (count == 0) {
                 st = con.prepareStatement(
                     "INSERT INTO TEST(STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) VALUES (?, ?, ?, ?, ?, ?)"
@@ -144,8 +144,7 @@ public class TestDao extends Dao {
 
         try {
             st = con.prepareStatement(
-                "INSERT INTO TEST(STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) " +
-                "VALUES (?, ?, ?, ?, ?, ?)"
+                "INSERT INTO TEST(STUDENT_NO, SUBJECT_CD, SCHOOL_CD, NO, POINT, CLASS_NUM) VALUES (?, ?, ?, ?, ?, ?)"
             );
 
             st.setString(1, test.getStudent().getNo());
