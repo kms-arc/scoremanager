@@ -24,12 +24,11 @@
                style="width: 100%; max-width: 600px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
       </div>
       
-      <%-- ④ 科目名見出し --%>
+<%-- ④ 科目名見出し --%>
       <div style="margin-bottom: 5px;">科目名</div>
       <%-- ⑤ 入力フィールド --%>
       <div style="margin-bottom: 20px;">
-        <%-- 修正：value="${name}" を追加（エラー時に値を保持） --%>
-        <input type="text" name="name" value="${name}" placeholder="科目名を記入してください" 
+        <input type="text" name="name" value="${name}" maxlength="20" placeholder="科目名を記入してください" 
                style="width: 100%; max-width: 600px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
       </div>
       
