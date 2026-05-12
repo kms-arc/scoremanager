@@ -6,8 +6,6 @@
   <c:param name="menuTitle">成績参照</c:param>
   <c:param name="content">
 
-    <h2 style="margin:0 0 15px 0;">成績参照</h2>
-
     <!-- 科目情報検索 -->
     <form action="TestList.action" method="post" style="margin:0;">
       <input type="hidden" name="f" value="sj">
