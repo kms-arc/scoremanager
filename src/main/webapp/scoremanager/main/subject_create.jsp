@@ -6,26 +6,27 @@
   <c:param name="menuTitle">科目情報登録</c:param>
   <c:param name="content">
     
-    <%-- ★追加：エラーメッセージの表示エリア --%>
-    <c:if test="${not empty error}">
-      <div style="color: red; margin-left: 20px; margin-bottom: 15px;">
-        ${error}
-      </div>
-    </c:if>
-    
-    <form action="SubjectCreateExecute.action" method="post" style="margin-left: 20px;">
+<form action="SubjectCreateExecute.action" method="post" style="margin-left: 20px;">
       
       <%-- ② 科目コード見出し --%>
       <div style="margin-bottom: 5px;">科目コード</div>
+      
       <%-- ③ 入力フィールド --%>
-      <div style="margin-bottom: 20px;">
-        <%-- ★修正：value="${cd}" を追加（エラー時に値を保持） --%>
+      <div style="margin-bottom: 5px;"> <%-- 下にエラーを出すので余白を少し詰めました --%>
         <input type="text" name="cd" value="${cd}" maxlength="3" placeholder="科目コードを入力してください" 
                style="width: 100%; max-width: 600px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
       </div>
-      
-<%-- ④ 科目名見出し --%>
+
+      <%-- 修正：エラーメッセージを移動。色はオレンジに変更 --%>
+      <c:if test="${not empty error}">
+        <div style="color: orange; font-size: 0.9rem; margin-bottom: 15px;">
+          ${error}
+        </div>
+      </c:if>
+
+      <%-- ④ 科目名見出し --%>
       <div style="margin-bottom: 5px;">科目名</div>
+      
       <%-- ⑤ 入力フィールド --%>
       <div style="margin-bottom: 20px;">
         <input type="text" name="name" value="${name}" maxlength="20" placeholder="科目名を記入してください" 
