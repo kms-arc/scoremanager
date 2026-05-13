@@ -48,7 +48,6 @@
         <div style="padding:20px;">
 
             <form action="${pageContext.request.contextPath}/Login.action" method="post">
- 
 
                 <div style="margin-bottom:10px;">
                     <label>ID</label><br>
@@ -57,7 +56,9 @@
 
                 <div style="margin-bottom:10px;">
                     <label>パスワード</label><br>
-                    <input type="password" id="pw" name="password" style="width:100%; height:28px;">
+                    <input type="password" id="pw" name="password"
+                           style="width:100%; height:28px;"
+                           maxlength="10">
                 </div>
 
                 <!-- ★ パスワード表示切替 -->
