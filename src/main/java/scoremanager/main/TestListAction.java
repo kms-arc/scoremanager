@@ -39,6 +39,8 @@ public class TestListAction extends Action {
 
         if ("sj".equals(f)) {
             // 科目情報検索
+            req.setAttribute("f", "sj"); // ★追加（エラー時でもモード保持）
+
             int entYear = Integer.parseInt(req.getParameter("f1"));
             String classNum = req.getParameter("f2");
             String subjectCd = req.getParameter("f3");
@@ -50,7 +52,6 @@ public class TestListAction extends Action {
                 subject.setCd(subjectCd);
                 subject.setSchool(school);
                 req.setAttribute("testListSubjects", new TestListSubjectDao().filter(entYear, classNum, subject, school));
-                req.setAttribute("f", "sj");
             }
 
         } else if ("st".equals(f)) {

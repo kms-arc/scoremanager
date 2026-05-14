@@ -34,9 +34,9 @@
               font-size:12px;
               padding:2px 4px;
             ">
-              <option value="0">--------</option>
+              <option value="0" <c:if test="${param.f1 == '0'}">selected</c:if>>--------</option>
               <c:forEach var="year" items="${ent_year_set}">
-                <option value="${year}">${year}</option>
+                <option value="${year}" <c:if test="${param.f1 == year}">selected</c:if>>${year}</option>
               </c:forEach>
             </select>
           </div>
@@ -49,9 +49,9 @@
               font-size:12px;
               padding:2px 4px;
             ">
-              <option value="0">--------</option>
+              <option value="0" <c:if test="${param.f2 == '0'}">selected</c:if>>--------</option>
               <c:forEach var="num" items="${class_num_set}">
-                <option value="${num}">${num}</option>
+                <option value="${num}" <c:if test="${param.f2 == num}">selected</c:if>>${num}</option>
               </c:forEach>
             </select>
           </div>
@@ -64,9 +64,9 @@
               font-size:12px;
               padding:2px 4px;
             ">
-              <option value="">--------</option>
+              <option value="" <c:if test="${empty param.f3}">selected</c:if>>--------</option>
               <c:forEach var="subject" items="${subjects}">
-                <option value="${subject.cd}">${subject.name}</option>
+                <option value="${subject.cd}" <c:if test="${param.f3 == subject.cd}">selected</c:if>>${subject.name}</option>
               </c:forEach>
             </select>
           </div>
