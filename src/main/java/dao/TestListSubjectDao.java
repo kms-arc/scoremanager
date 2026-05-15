@@ -37,6 +37,7 @@ public class TestListSubjectDao extends Dao {
             + "AND S.ENT_YEAR = ? "
             + "AND S.CLASS_NUM = ? "
             + "AND S.IS_ATTEND = TRUE "
+            + "AND T.NO IS NOT NULL "
             + "ORDER BY S.NO, T.NO";
 
     /**
