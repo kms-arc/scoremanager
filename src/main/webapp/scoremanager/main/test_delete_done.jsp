@@ -6,8 +6,6 @@
   <c:param name="menuTitle">成績削除完了</c:param>
   <c:param name="content">
 
-    <h2>成績削除完了</h2>
-
     <p>成績を削除しました。</p>
 
     <p>
