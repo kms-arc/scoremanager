@@ -26,6 +26,14 @@ public class StudentCreateExecuteAction extends Action {
 
         StudentDao sDao = new StudentDao();
         Map<String, String> errors = new HashMap<>();
+      
+     // 未入力チェック
+        if (no == null || no.isEmpty()) {
+            errors.put("no", "学生番号を入力してください");
+        }
+        if (name == null || name.isEmpty()) {
+            errors.put("name", "氏名を入力してください");
+        }
 
         // 入学年度チェック
         int entYear = 0;
@@ -45,6 +53,7 @@ public class StudentCreateExecuteAction extends Action {
         }
 
         if (!errors.isEmpty()) {
+        	request.setAttribute("error", errors.values().iterator().next());
             // エラーがある場合は入力値を保持して入力画面に戻る
             request.setAttribute("errors", errors);
             request.setAttribute("no", no);
