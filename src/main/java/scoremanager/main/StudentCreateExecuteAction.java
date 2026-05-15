@@ -45,21 +45,20 @@ public class StudentCreateExecuteAction extends Action {
 
         // 学生番号重複チェック
         // StudentDao.java の find(String no, School school) に合わせる
-        if (errors.isEmpty()) {
-            Student existing = sDao.find(no, teacher.getSchool()); 
-            if (existing != null) {
-                errors.put("no", "学生番号が重複しています");
-            }
-        }
-
         if (!errors.isEmpty()) {
-        	request.setAttribute("error", errors.values().iterator().next());
-            // エラーがある場合は入力値を保持して入力画面に戻る
+            request.setAttribute("error", errors.values().iterator().next());
+            
+            // エラーがある場合は入力値を保持
             request.setAttribute("errors", errors);
             request.setAttribute("no", no);
             request.setAttribute("name", name);
             request.setAttribute("ent_year", entYearStr);
             request.setAttribute("class_num", classNum);
+
+            // ここから追加：クラスリストを再取得してセット 
+            dao.ClassNumDao cNumDao = new dao.ClassNumDao();
+            java.util.List<String> class_num_set = cNumDao.filter(teacher.getSchool());
+            request.setAttribute("class_num_set", class_num_set);
             
             // リストの再取得が必要なため、StudentCreateActionのロジックを通す
             new StudentCreateAction().execute(request, response);
