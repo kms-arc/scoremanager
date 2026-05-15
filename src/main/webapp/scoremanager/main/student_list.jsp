@@ -86,7 +86,7 @@
               </td>
               <td style="text-align: center;">
                 <%-- No.22 学生情報変更リンク --%>
-                <a href="StudentUpdate.action?no=${s.no}">編集</a>
+                <a href="UpdateStudent.action?no=${s.no}">編集</a>
               </td>
             </tr>
           </c:forEach>
