@@ -11,7 +11,7 @@
 <!-- ★ 全体白枠 -->
 <div style="width:900px; margin:20px auto; background-color:#ffffff; padding-bottom:20px;">
 
-    <!-- ★ 青帯（得点管理システム） -->
+    <!-- ★ 青帯 -->
     <div style="
         background-color:#e6f6ff;
         height:50px;
@@ -21,10 +21,9 @@
         <div style="font-size:28px; font-weight:bold;">得点管理システム</div>
     </div>
 
-    <!-- ★ タイトルとフォームの間に余白 -->
     <div style="height:20px;"></div>
 
-    <!-- ★ 四角い枠（ログインフォーム） -->
+    <!-- ★ ログイン枠 -->
     <div style="
         width:400px;
         margin:0 auto;
@@ -33,7 +32,7 @@
         padding:0;
     ">
 
-        <!-- ★ 灰色帯（四角の中に入れる） -->
+        <!-- ★ 灰色帯 -->
         <div style="
             background-color:#e0e0e0;
             padding:8px 10px;
@@ -49,39 +48,48 @@
 
             <form action="${pageContext.request.contextPath}/Login.action" method="post">
 
+                <!-- ★ ID -->
                 <div style="margin-bottom:10px;">
                     <label>ID</label><br>
-                    <input type="text" name="id" style="width:100%; height:28px;">
+                    <input type="text" name="id"
+                           value="${id}"
+                           style="width:100%; height:28px;"
+                           maxlength="10"
+                           required>
                 </div>
 
+                <!-- ★ パスワード -->
                 <div style="margin-bottom:10px;">
                     <label>パスワード</label><br>
                     <input type="password" id="pw" name="password"
                            style="width:100%; height:28px;"
-                           maxlength="10">
+                           maxlength="30"
+                           required>
                 </div>
 
                 <!-- ★ パスワード表示切替 -->
                 <div style="margin-bottom:15px;">
-                    <label style="font-size:12px;">
-                        <input type="checkbox"
-                               onclick="document.getElementById('pw').type = this.checked ? 'text' : 'password';">
-                        パスワードを表示
-                    </label>
+                    <input type="checkbox" id="chk_d_ps"
+                           onclick="document.getElementById('pw').type = this.checked ? 'text' : 'password';">
+                    <label for="chk_d_ps" style="font-size:12px;">パスワードを表示</label>
                 </div>
 
+                <!-- ★ ログインボタン -->
                 <button type="submit" style="width:100%; padding:8px;">ログイン</button>
 
             </form>
 
-            <div style="color:red; margin-top:10px;">
-                ${error}
-            </div>
+            <!-- ★ 認証エラー（サーバ側） -->
+            <c:if test="${not empty error}">
+                <div style="color:red; margin-top:10px;">
+                    ${error}
+                </div>
+            </c:if>
 
         </div>
     </div>
 
-    <!-- ★ 下部（中央寄せ） -->
+    <!-- ★ フッター -->
     <div style="
         background-color:#e0e0e0;
         height:50px;

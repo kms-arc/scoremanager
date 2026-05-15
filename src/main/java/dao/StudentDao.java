@@ -16,7 +16,7 @@ public class StudentDao {
     private static final String USER = "sa";
     private static final String PASS = "";
 
-    // ★ 年度一覧取得（追加）
+    // ★ 年度一覧取得
     public List<Integer> getEntYearList(School school) {
 
         List<Integer> list = new ArrayList<>();
@@ -176,7 +176,14 @@ public class StudentDao {
             );
 
             st.setString(1, s.getName());
-            st.setInt(2, s.getEntYear());
+
+            // ★ null 対応
+            if (s.getEntYear() == 0) {
+                st.setObject(2, null);
+            } else {
+                st.setInt(2, s.getEntYear());
+            }
+
             st.setString(3, s.getClassNum());
             st.setBoolean(4, s.isAttend());
             st.setString(5, s.getNo());
@@ -192,7 +199,7 @@ public class StudentDao {
         }
     }
 
-    // ★ 学生新規登録
+    // ★ 新規登録（null 年度対応済み）
     public void insert(Student s) {
 
         try {
@@ -206,7 +213,14 @@ public class StudentDao {
 
             st.setString(1, s.getNo());
             st.setString(2, s.getName());
-            st.setInt(3, s.getEntYear());
+
+            // ★ null 対応
+            if (s.getEntYear() == 0) {
+                st.setObject(3, null);
+            } else {
+                st.setInt(3, s.getEntYear());
+            }
+
             st.setString(4, s.getClassNum());
             st.setBoolean(5, s.isAttend());
             st.setString(6, s.getSchool().getCd());
@@ -221,7 +235,7 @@ public class StudentDao {
         }
     }
 
-    // ★ 入学年度＋クラスで学生一覧を取得（成績登録用）
+    // ★ 成績登録用
     public List<Student> filter(String entYear, String classNum, School school) {
 
         List<Student> list = new ArrayList<>();
@@ -262,7 +276,7 @@ public class StudentDao {
         return list;
     }
 
-    // ★ 絞り込み検索（追加）
+    // ★ 絞り込み検索
     public List<Student> search(School school, int entYear, String classNum, boolean isAttend) {
 
         List<Student> list = new ArrayList<>();
@@ -271,18 +285,11 @@ public class StudentDao {
             Class.forName("org.h2.Driver");
             Connection con = DriverManager.getConnection(URL, USER, PASS);
 
-            // ★ SQL を動的に組み立てる
             String sql = "SELECT * FROM STUDENT WHERE SCHOOL_CD = ?";
-            
-            if (entYear != 0) {
-                sql += " AND ENT_YEAR = " + entYear;
-            }
-            if (classNum != null && !classNum.equals("0")) {
-                sql += " AND CLASS_NUM = '" + classNum + "'";
-            }
-            if (isAttend) {
-                sql += " AND IS_ATTEND = TRUE";
-            }
+
+            if (entYear != 0) sql += " AND ENT_YEAR = " + entYear;
+            if (classNum != null && !classNum.equals("0")) sql += " AND CLASS_NUM = '" + classNum + "'";
+            if (isAttend) sql += " AND IS_ATTEND = TRUE";
 
             sql += " ORDER BY NO";
 
