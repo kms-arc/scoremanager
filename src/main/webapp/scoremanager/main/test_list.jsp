@@ -112,6 +112,7 @@
             <label style="font-size:11px; color:#333;">学生番号</label><br>
             <input type="text" name="f4" maxlength="10" value="${f4}"
               placeholder="学生番号を入力してください"
+              required
               style="
                 width:250px;
                 height:26px;
@@ -205,6 +206,17 @@
 
     <!-- 学生別成績一覧 -->
     <c:if test="${f == 'st'}">
+
+      <c:if test="${not empty student}">
+        <div style="margin-top:15px; font-size:13px;">
+          氏名：${student.name}（${student.no}）
+        </div>
+      </c:if>
+
+      <c:if test="${not empty message}">
+        <div style="color:#666; margin-top:15px;">${message}</div>
+      </c:if>
+
       <c:choose>
         <c:when test="${not empty testListStudents}">
           <table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:13px;">
@@ -236,7 +248,9 @@
         </c:when>
 
         <c:otherwise>
-          <div style="color:#666; margin-top:15px;">該当する成績情報が存在しませんでした。</div>
+          <c:if test="${empty message}">
+            <div style="color:#666; margin-top:15px;">該当する成績情報が存在しませんでした。</div>
+          </c:if>
         </c:otherwise>
       </c:choose>
     </c:if>

@@ -9,6 +9,7 @@ import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
+import dao.StudentDao;
 import dao.SubjectDao;
 import dao.TestListStudentDao;
 import dao.TestListSubjectDao;
@@ -39,7 +40,7 @@ public class TestListAction extends Action {
 
         if ("sj".equals(f)) {
             // 科目情報検索
-            req.setAttribute("f", "sj"); // ★追加（エラー時でもモード保持）
+            req.setAttribute("f", "sj");
 
             int entYear = Integer.parseInt(req.getParameter("f1"));
             String classNum = req.getParameter("f2");
@@ -56,17 +57,36 @@ public class TestListAction extends Action {
 
         } else if ("st".equals(f)) {
             // 学生情報検索
+            req.setAttribute("f", "st");
+
             String studentNo = req.getParameter("f4");
             req.setAttribute("f4", studentNo);
 
             if (studentNo == null || studentNo.trim().isEmpty()) {
                 req.setAttribute("error", "学生番号を入力してください");
             } else {
-                Student student = new Student();
-                student.setNo(studentNo.trim());
-                student.setSchool(school);
-                req.setAttribute("testListStudents", new TestListStudentDao().filter(student));
-                req.setAttribute("f", "st");
+                studentNo = studentNo.trim();
+
+                StudentDao studentDao = new StudentDao();
+                Student target = studentDao.find(studentNo, school);
+
+                if (target == null) {
+                    req.setAttribute("error", "該当する学生情報が存在しませんでした。");
+                } else {
+                    req.setAttribute("student", target);
+
+                    Student student = new Student();
+                    student.setNo(studentNo);
+                    student.setSchool(school);
+
+                    List<?> list = new TestListStudentDao().filter(student);
+
+                    if (list == null || list.isEmpty()) {
+                        req.setAttribute("message", "成績情報が存在しませんでした。");
+                    } else {
+                        req.setAttribute("testListStudents", list);
+                    }
+                }
             }
         }
 
